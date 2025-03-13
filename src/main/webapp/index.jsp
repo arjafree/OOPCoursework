@@ -57,7 +57,7 @@
                   </div>
                 <%
                     }
-                    // If there are more notes than were showing
+                    // If there are more notes than we're showing
                     if (notes.size() > 3) {
                 %>
                   <div class="more-notes">

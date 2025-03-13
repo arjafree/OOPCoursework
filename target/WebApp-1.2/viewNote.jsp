@@ -16,6 +16,9 @@
     <div class="main-content">
       <%
         Note note = (Note) request.getAttribute("note");
+        if (note == null) {
+          out.println("<p>Note not found.</p>");
+        } else {
       %>
       <h2><%= note.getName() %></h2>
       <p><%= note.getText() %></p>
@@ -40,6 +43,9 @@
         %>
       </ul>
       <a href="index.html">Back to Index</a>
+      <%
+        }
+      %>
     </div>
   </div>
 </body>

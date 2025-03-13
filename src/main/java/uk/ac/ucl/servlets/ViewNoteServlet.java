@@ -11,7 +11,7 @@ import uk.ac.ucl.model.Note;
 
 import java.io.IOException;
 
-@WebServlet("/viewNote.html")
+@WebServlet("/viewNote")
 public class ViewNoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
