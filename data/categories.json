@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Work",
+    "noteIDs": [1, 2]
+  },
+  {
+    "name": "Personal",
+    "noteIDs": [3]
+  },
+  {
+    "name": "Shopping",
+    "noteIDs": [4, 5]
+  }
+]

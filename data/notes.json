@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Meeting Notes",
+    "text": "Discuss project milestones and deadlines.",
+    "categories": ["Work"],
+    "imagePaths": []
+  },
+  {
+    "id": 2,
+    "name": "Code Review",
+    "text": "Review the new feature implementation.",
+    "categories": ["Work"],
+    "imagePaths": []
+  },
+  {
+    "id": 3,
+    "name": "Birthday Party",
+    "text": "Plan the birthday party for next weekend.",
+    "categories": ["Personal"],
+    "imagePaths": []
+  },
+  {
+    "id": 4,
+    "name": "Grocery List",
+    "text": "Buy milk, eggs, and bread.",
+    "categories": ["Shopping"],
+    "imagePaths": []
+  },
+  {
+    "id": 5,
+    "name": "Gift Ideas",
+    "text": "Look for gift ideas for the upcoming holidays.",
+    "categories": ["Shopping"],
+    "imagePaths": []
+  }
+]
