@@ -32,6 +32,9 @@
           }
         %>
       </ul>
+      <%
+        if (!note.getImagePaths().isEmpty()) {
+      %>
       <h3>Images:</h3>
       <ul>
         <%
@@ -42,6 +45,9 @@
           }
         %>
       </ul>
+      <%
+        }
+      %>
       <a href="index.html">Back to Index</a>
       <%
         }

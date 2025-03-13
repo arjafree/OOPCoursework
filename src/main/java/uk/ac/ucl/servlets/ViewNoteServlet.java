@@ -15,7 +15,6 @@ import java.io.IOException;
 public class ViewNoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("here");
         Model model = ModelFactory.getModel();
         int noteId = Integer.parseInt(request.getParameter("id"));
         Note note = model.getNoteByID(noteId);
