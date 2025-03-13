@@ -14,7 +14,7 @@ public class Model {
   }
 
   public Note getNoteByID(int id){
-      return index.getNotes().get(id);
+      return index.getNotes().get(id-1);
   }
 
   public void setNotes(ArrayList<Note> notes) {
@@ -45,6 +45,18 @@ public class Model {
           notes.add(getNoteByID(id));
       }
       return notes;
+  }
+
+  public ArrayList<ArrayList<Note>> getlistNotesFromCategories(){
+      ArrayList<ArrayList<Note>> listoflists = new ArrayList<>();
+      for(Category category:index.getCategories()) {
+          ArrayList<Note> notes = new ArrayList<>();
+          for (int i : category.getNoteIDs()) {
+              notes.add(getNoteByID(i));
+          }
+          listoflists.add(notes);
+      }
+      return listoflists;
   }
 
   public void removeNoteFromCategory(Note note, String categoryName) {

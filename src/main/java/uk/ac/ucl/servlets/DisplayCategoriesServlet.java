@@ -19,6 +19,7 @@ public class DisplayCategoriesServlet extends HttpServlet {
         Model model = ModelFactory.getModel();
         System.out.println("display categories servlet");
         request.setAttribute("categories", model.getIndex().getCategories());
+        request.setAttribute("notes", model.getIndex().getNotes());
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher = context.getRequestDispatcher("/categories.jsp");

@@ -1,6 +1,7 @@
 package uk.ac.ucl.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
         request.setAttribute("categories", model.getIndex().getCategories());
+        request.setAttribute("listOflistOfnotes", model.getlistNotesFromCategories());
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

@@ -1,4 +1,4 @@
-<%@ page import="uk.ac.ucl.model.Index, uk.ac.ucl.model.Note, uk.ac.ucl.model.Category" %>
+<%@ page import="uk.ac.ucl.model.Index, uk.ac.ucl.model.Note, uk.ac.ucl.model.Category, uk.ac.ucl.model.Model" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -27,8 +27,11 @@
         <div class="categories-grid">
           <%
             ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+            ArrayList<ArrayList<Note>> listOflistOfnotes = (ArrayList<ArrayList<Note>>) request.getAttribute("listOflistOfnotes");
             if (categories != null && !categories.isEmpty()) {
-              for (Category category : categories) {
+              for (int i = 0; i < categories.size(); i++) {
+                Category category = categories.get(i);
+                ArrayList<Note> notes = listOflistOfnotes.get(i);
           %>
             <div class="category-card">
               <div class="category-header">
@@ -40,11 +43,11 @@
               </div>
               <div class="notes-list">
                 <%
-                  if (category.getNotes().size() > 0) {
+                  if (notes.size() > 0) {
                     // Display up to 3 notes per category on the index page
-                    int notesToShow = Math.min(category.getNotes().size(), 3);
-                    for (int i = 0; i < notesToShow; i++) {
-                      Note note = category.getNotes().get(i);
+                    int notesToShow = Math.min(notes.size(), 3);
+                    for (int j = 0; j < notesToShow; j++) {
+                      Note note = notes.get(j);
                 %>
                   <div class="note-item">
                     <a href="viewNote?id=<%= note.getId() %>" class="note-link">
@@ -54,11 +57,11 @@
                   </div>
                 <%
                     }
-                    // If there are more notes than we're showing
-                    if (category.getNotes().size() > 3) {
+                    // If there are more notes than were showing
+                    if (notes.size() > 3) {
                 %>
                   <div class="more-notes">
-                    + <%= category.getNotes().size() - 3 %> more notes
+                    + <%= notes.size() - 3 %> more notes
                   </div>
                 <%
                     }

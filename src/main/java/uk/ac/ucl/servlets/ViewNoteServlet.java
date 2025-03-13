@@ -11,19 +11,20 @@ import uk.ac.ucl.model.Note;
 
 import java.io.IOException;
 
-@WebServlet("/viewNote")
+@WebServlet("/viewNote.html")
 public class ViewNoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("here");
         Model model = ModelFactory.getModel();
         int noteId = Integer.parseInt(request.getParameter("id"));
         Note note = model.getNoteByID(noteId);
 
         if (note != null) {
             request.setAttribute("note", note);
-            request.getRequestDispatcher("viewNote.jsp").forward(request, response);
+            request.getRequestDispatcher("/viewNote.jsp").forward(request, response);
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/index.html");
         }
     }
 }
