@@ -4,17 +4,43 @@ import java.util.ArrayList;
 
 public class Model {
   private Index index;
+  private Directory rootDirectory;
 
   public Model() {
     index = new Index();
+    rootDirectory = new Directory("Root");
   }
 
   public Index getIndex() {
     return index;
   }
 
+  public Directory getRootDirectory(){
+      return rootDirectory;
+  }
+
   public Note getNoteByID(int id){
       return index.getNotes().get(id-1);
+  }
+
+  public Directory findDirectory(String path) {
+    String[] parts = path.split("/");
+    Directory current = rootDirectory;
+
+    for (String part : parts) {
+        boolean found = false;
+        for (Directory subdirectory : current.getSubdirectories()) {
+            if (subdirectory.getName().equals(part)) {
+                current = subdirectory;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            return null;
+        }
+    }
+    return current;
   }
 
   public void setNotes(ArrayList<Note> notes) {
