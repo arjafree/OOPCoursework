@@ -1,7 +1,7 @@
-<%@ page import="uk.ac.ucl.model.Index, uk.ac.ucl.model.Note, uk.ac.ucl.model.Category, uk.ac.ucl.model.Directory" %>
 <%@ page import="java.util.ArrayList, java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.io.IOException" %>
+<%@ page import="uk.ac.ucl.model.Directory, uk.ac.ucl.model.Note, uk.ac.ucl.model.Category" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,13 +35,17 @@
             <%
               Directory rootDirectory = (Directory) request.getAttribute("rootDirectory");
               if (rootDirectory != null) {
-                for (Directory subdirectory : rootDirectory.getSubdirectories()){
-                    renderDirectoryTree(out, subdirectory, "");
-                }
-                if(rootDirectory.getSubdirectories()==null){
-              %>
-                  <li class="tree-item empty">No directories available</li>
-              <%
+                // Render the root directory itself
+                out.println("<li class=\"tree-item\">");
+                out.println("  <div class=\"tree-item-content\">");
+                out.println("    <span class=\"folder-icon\">📁</span>");
+                out.println("    <a href=\"directory?path=" + rootDirectory.getPath() + "\">" + rootDirectory.getName() + "</a>");
+                out.println("  </div>");
+                out.println("</li>");
+
+                // Render the subdirectories of the root directory
+                for (Directory subdirectory : rootDirectory.getSubdirectories()) {
+                  renderDirectoryTree(out, subdirectory, "");
                 }
               } else {
             %>
