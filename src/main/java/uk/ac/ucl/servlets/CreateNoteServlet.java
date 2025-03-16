@@ -21,9 +21,11 @@ public class CreateNoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = model.getIndex().getNotes().size()+1;
+        request.setAttribute("id", id);
         String title = request.getParameter("title");
         String content = request.getParameter("content");
+        String directoryPath = request.getParameter("directoryPath");
 
         // Read categories and imagePaths from request parameters
         String categoriesJson = request.getParameter("categories");
@@ -38,6 +40,7 @@ public class CreateNoteServlet extends HttpServlet {
         for(String categoryName : categories){
             model.addNoteToCategory(note, categoryName);
         }
-        response.sendRedirect("displayNotes?category=" + categories.get(0));
+        model.addNoteToDirectory(note, directoryPath);
+        response.sendRedirect("directory?path=" + directoryPath);
     }
 }

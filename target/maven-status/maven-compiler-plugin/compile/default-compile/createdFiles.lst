@@ -1,7 +1,8 @@
 uk/ac/ucl/servlets/DisplayNotesServlet.class
 uk/ac/ucl/main/Main.class
-uk/ac/ucl/model/GsonJsonReader$1.class
-uk/ac/ucl/model/GsonJsonReader.class
 uk/ac/ucl/model/Model.class
+uk/ac/ucl/servlets/DirectoryServlet.class
 uk/ac/ucl/model/ModelFactory.class
+uk/ac/ucl/servlets/CreateDirectoryServlet.class
+uk/ac/ucl/model/Directory.class
 uk/ac/ucl/servlets/IndexServlet.class

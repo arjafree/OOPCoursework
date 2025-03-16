@@ -28,8 +28,12 @@ public class Model {
     Directory current = rootDirectory;
 
     for (String part : parts) {
+        if (part.isEmpty()) {
+            continue;
+        }
         boolean found = false;
         for (Directory subdirectory : current.getSubdirectories()) {
+            System.out.println("subdir: " + subdirectory.getName());
             if (subdirectory.getName().equals(part)) {
                 current = subdirectory;
                 found = true;
@@ -65,6 +69,15 @@ public class Model {
         index.addNote(note);
   }
 
+  public void addNoteToDirectory(Note note, String directoryPath){
+      Directory directory = findDirectory(directoryPath);
+      if (directory != null) {
+          note.setDirectory(directory);
+      } else {
+          note.setDirectory(rootDirectory);
+      }
+  }
+
   public ArrayList<Note> getNotesFromIDs(ArrayList<Integer> ids){
       ArrayList<Note> notes = new ArrayList<>();
       for(int id:ids){
@@ -84,6 +97,20 @@ public class Model {
       }
       return listoflists;
   }
+
+  public Directory getParentDirectory(Directory d){
+      return d.getParent();
+  }
+
+  public void createDirectory(String name, String parentPath) {
+        Directory parent = findDirectory(parentPath);
+        if (parent != null) {
+            Directory newDirectory = new Directory(name, parent);
+            parent.addSubdirectory(newDirectory);
+        }
+  }
+
+
 
   public void removeNoteFromCategory(Note note, String categoryName) {
         for (Category category : index.getCategories()) {
