@@ -1,10 +1,16 @@
 package uk.ac.ucl.model;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Model {
   private Index index;
   private Directory rootDirectory;
+  private static final String NOTES_FILE_PATH = "data/notes.json";
 
   public Model() {
     index = new Index();
@@ -24,23 +30,26 @@ public class Model {
   }
 
   public Directory findDirectory(String path) {
+
     String[] parts = path.split("/");
     Directory current = rootDirectory;
+    if((parts.length == 1 && parts[0].equals("Root"))||path.equals("/")){
+        return current;
+    }
 
     for (String part : parts) {
-        if (part.isEmpty()) {
+        if (part.isEmpty()||part.equals("Root")) {
             continue;
         }
         boolean found = false;
         for (Directory subdirectory : current.getSubdirectories()) {
-            System.out.println("subdir: " + subdirectory.getName());
             if (subdirectory.getName().equals(part)) {
                 current = subdirectory;
                 found = true;
-                break;
             }
         }
         if (!found) {
+            System.out.println("this area");
             return null;
         }
     }
@@ -71,10 +80,12 @@ public class Model {
 
   public void addNoteToDirectory(Note note, String directoryPath){
       Directory directory = findDirectory(directoryPath);
-      if (directory != null) {
+      if (directory != null) { 
           note.setDirectory(directory);
+          directory.addNote(note);
       } else {
           note.setDirectory(rootDirectory);
+          rootDirectory.addNote(note);
       }
   }
 
@@ -103,15 +114,15 @@ public class Model {
   }
 
   public void createDirectory(String name, String parentPath) {
-        Directory parent = findDirectory(parentPath);
-        if (parent != null) {
+      if(parentPath.length()>1){
+          parentPath = parentPath.substring(4);
+      }
+      Directory parent = findDirectory(parentPath);
+      if (parent != null) {
             Directory newDirectory = new Directory(name, parent);
             parent.addSubdirectory(newDirectory);
-        }
+      }
   }
-
-
-
   public void removeNoteFromCategory(Note note, String categoryName) {
         for (Category category : index.getCategories()) {
             if (category.getName().equals(categoryName)) {
@@ -119,6 +130,15 @@ public class Model {
                 index.removeNote(note);
                 return;
             }
+        }
+  }
+  public void saveNotesToFile() {
+        try (FileWriter writer = new FileWriter(NOTES_FILE_PATH)) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(index.getNotes(), writer);
+            System.out.println("Notes saved to " + NOTES_FILE_PATH);
+        } catch (IOException e) {
+            System.err.println("Error saving notes to file: " + e.getMessage());
         }
   }
 }

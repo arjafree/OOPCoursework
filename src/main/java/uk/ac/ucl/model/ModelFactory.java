@@ -1,14 +1,13 @@
 package uk.ac.ucl.model;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 // This class gives access to the model to any other class that needs it.
@@ -32,11 +31,55 @@ public class ModelFactory
       model = new Model();
       loadNotes();
       loadCategories();
+      loadDirectories();
+
       // Note where the data file is stored in the data directory,
       // and the pathname to locate it.
       // The data should be read the file once, not every time the model is accessed!
     }
     return model;
+  }
+  private static void loadDirectories() {
+    for (Note note : notes) {
+        String directoryPath = note.getDirectoryPath();
+        Directory directory = model.findDirectory(directoryPath);
+
+        // If the directory does not exist, create it
+        if (directory == null) {
+            createDirectoriesForPath(directoryPath);
+        }
+
+        // Add the note to the directory
+        model.addNoteToDirectory(note, directoryPath);
+        
+    }
+  }
+
+  // Helper method to create directories for a given path
+  private static void createDirectoriesForPath(String path) {
+      String[] parts = path.split("/");
+      Directory current = model.getRootDirectory();
+
+      for (String part : parts) {
+          if (part.isEmpty()||part.equals("Root")) {
+              continue; // Skip empty parts (e.g., leading "/")
+          }
+
+          // Check if the subdirectory already exists
+          Directory subdirectory = current.getSubdirectories().stream()
+              .filter(dir -> dir.getName().equals(part))
+              .findFirst()
+              .orElse(null);
+
+          // If the subdirectory does not exist, create it
+          if (subdirectory == null) {
+              subdirectory = new Directory(part, current);
+              current.addSubdirectory(subdirectory);
+          }
+
+          // Move to the next level in the directory tree
+          current = subdirectory;
+      }
   }
   private static void loadNotes() {
     Gson gson = new Gson();

@@ -1,5 +1,6 @@
-<%@ page import="uk.ac.ucl.model.Note, uk.ac.ucl.model.Model, uk.ac.ucl.model.ModelFactory" %>
+<%@ page import="uk.ac.ucl.model.Note"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.io.IOException" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
         String firstCategory = note.getCategories().isEmpty() ? "" : note.getCategories().get(0);
     %>
     <header>
-      <h1><%= note.getTitle() %></h1>
+      <h1><%= note.getName() %></h1>
       <div class="header-actions">
         <a href="<%= directoryPath.equals("/") ? "index.html" : "directory?path=" + directoryPath %>" class="btn secondary">
           <span class="icon">←</span> Back to Directory
@@ -116,10 +117,7 @@
                 for (String imagePath : note.getImagePaths()) {
               %>
                 <div class="image-container">
-                  <img src="<%=  {
-              %>
-                <div class="image-container">
-                  <img src="<%= imagePath %>" alt="Image for <%= note.getTitle() %>">
+                  <img src="<%= imagePath %>" alt="Image for <%= note.getName() %>">
                 </div>
               <%
                 }

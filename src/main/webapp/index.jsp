@@ -15,13 +15,13 @@
     <header>
       <h1>Notes App</h1>
       <div class="header-actions">
-        <a href="createDirectory.jsp" class="btn primary">
+        <a href="createDirectory" class="btn primary">
           <span class="icon">+</span> New Directory
         </a>
-        <a href="createCategory.jsp" class="btn secondary">
+        <a href="createCategory" class="btn secondary">
           <span class="icon">+</span> New Category
         </a>
-        <a href="createNote.jsp" class="btn secondary">
+        <a href="createNote" class="btn secondary">
           <span class="icon">+</span> New Note
         </a>
       </div>
@@ -93,7 +93,68 @@
           <!-- Directory View Tab -->
           <div class="tab-content active" id="directories">
             <h2>Files by Directory</h2>
+            
+            <!-- Root Directory Notes Section -->
+            <%
+              if (rootDirectory != null) {
+                List<Note> rootNotes = rootDirectory.getNotes();
+                if (rootNotes != null && !rootNotes.isEmpty()) {
+            %>
+              <div class="directory-section">
+                <div class="directory-header">
+                  <h3 class="directory-title">
+                    <span class="folder-icon">📁</span>
+                    Root Directory
+                  </h3>
+                  <a href="directory?path=/" class="view-all">View Contents</a>
+                </div>
 
+                <div class="notes-grid">
+                  <%
+                    // Display up to 3 notes from root directory
+                    int rootNotesToShow = Math.min(rootNotes.size(), 3);
+                    for (int i = 0; i < rootNotesToShow; i++) {
+                      Note note = rootNotes.get(i);
+                  %>
+                    <div class="note-card" onclick="location.href='viewNote?id=<%= note.getId() %>'">
+                      <div class="note-title">
+                        <span class="note-icon">📝</span>
+                        <%= note.getName() != null ? note.getName() : note.getName() %>
+                      </div>
+                      <div class="note-preview"><%= note.getText().length() > 100 ? note.getText().substring(0, 100) + "..." : note.getText() %></div>
+                      <div class="note-meta">
+                        <div class="note-categories">
+                          <%
+                            for (String categoryName : note.getCategories()) {
+                          %>
+                            <span class="category-tag"><%= categoryName %></span>
+                          <%
+                            }
+                          %>
+                        </div>
+                      </div>
+                    </div>
+                  <%
+                    }
+                    // If there are more notes than we're showing
+                    if (rootNotes.size() > 3) {
+                  %>
+                    <div class="more-notes-card">
+                      <a href="directory?path=/" class="more-notes-link">
+                        + <%= rootNotes.size() - 3 %> more notes
+                      </a>
+                    </div>
+                  <%
+                    }
+                  %>
+                </div>
+              </div>
+            <%
+                }
+              }
+            %>
+
+            <!-- Subdirectories Sections -->
             <%
               if (rootDirectory != null && rootDirectory.getSubdirectories().size() > 0) {
                 for (Directory dir : rootDirectory.getSubdirectories()) {
@@ -119,7 +180,7 @@
                     <div class="note-card" onclick="location.href='viewNote?id=<%= note.getId() %>'">
                       <div class="note-title">
                         <span class="note-icon">📝</span>
-                        <%= note.getName() %>
+                        <%= note.getName() != null ? note.getName() : note.getName() %>
                       </div>
                       <div class="note-preview"><%= note.getText().length() > 100 ? note.getText().substring(0, 100) + "..." : note.getText() %></div>
                       <div class="note-meta">
@@ -150,7 +211,7 @@
                   %>
                     <div class="empty-notes-card">
                       <p>No notes in this directory</p>
-                      <a href="createNote.jsp?directory=<%= dir.getPath() %>" class="btn secondary small">
+                      <a href="createNote?directory=<%= dir.getPath() %>" class="btn secondary small">
                         <span class="icon">+</span> Add Note
                       </a>
                     </div>
@@ -161,11 +222,18 @@
               </div>
             <%
                 }
-              } else {
+              } else if (rootDirectory != null && rootDirectory.getNotes().isEmpty()) {
+            %>
+              <div class="empty-state">
+                <p>No notes available. Create your first note to get started!</p>
+                <a href="createNote" class="btn primary">Create Note</a>
+              </div>
+            <%
+              } else if (rootDirectory == null) {
             %>
               <div class="empty-state">
                 <p>No directories available. Create your first directory to get started!</p>
-                <a href="createDirectory.jsp" class="btn primary">Create Directory</a>
+                <a href="createDirectory" class="btn primary">Create Directory</a>
               </div>
             <%
               }
@@ -203,7 +271,7 @@
                     <div class="note-card" onclick="location.href='viewNote?id=<%= note.getId() %>'">
                       <div class="note-title">
                         <span class="note-icon">📝</span>
-                        <%= note.getName() %>
+                        <%= note.getName() != null ? note.getName() : note.getName() %>
                       </div>
                       <div class="note-preview"><%= note.getText().length() > 100 ? note.getText().substring(0, 100) + "..." : note.getText() %></div>
                       <div class="note-meta">
@@ -233,7 +301,7 @@
                   %>
                     <div class="empty-notes-card">
                       <p>No notes in this category</p>
-                      <a href="createNote.jsp?category=<%= category.getName() %>" class="btn secondary small">
+                      <a href="createNote?category=<%= category.getName() %>" class="btn secondary small">
                         <span class="icon">+</span> Add Note
                       </a>
                     </div>
@@ -248,7 +316,7 @@
             %>
               <div class="empty-state">
                 <p>No categories available. Create your first category to get started!</p>
-                <a href="createCategory.jsp" class="btn primary">Create Category</a>
+                <a href="createCategory" class="btn primary">Create Category</a>
               </div>
             <%
               }

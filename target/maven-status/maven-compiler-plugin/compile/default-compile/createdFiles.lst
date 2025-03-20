@@ -1,5 +1,6 @@
 uk/ac/ucl/servlets/DisplayNotesServlet.class
 uk/ac/ucl/main/Main.class
+uk/ac/ucl/servlets/ImageUploadServlet.class
 uk/ac/ucl/model/Model.class
 uk/ac/ucl/servlets/DirectoryServlet.class
 uk/ac/ucl/model/ModelFactory.class

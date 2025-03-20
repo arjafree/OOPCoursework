@@ -3,35 +3,59 @@
     "id": 1,
     "name": "Meeting Notes",
     "text": "Discuss project milestones and deadlines.",
-    "categories": ["Work"],
-    "imagePaths": []
+    "categories": [
+      "Work",
+      "Urgent"
+    ],
+    "imagePaths": [
+      "data/images/meeting1.jpg",
+      "data/images/meeting2.jpg"
+    ],
+    "directoryPath": "Root/Work"
   },
   {
     "id": 2,
-    "name": "Code Review",
-    "text": "Review the new feature implementation.",
-    "categories": ["Work"],
-    "imagePaths": []
+    "name": "Shopping List",
+    "text": "Milk, Bread, Eggs, Butter, Coffee.",
+    "categories": [
+      "Personal"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Personal"
   },
   {
     "id": 3,
-    "name": "Birthday Party",
-    "text": "Plan the birthday party for next weekend.",
-    "categories": ["Personal"],
-    "imagePaths": []
+    "name": "Vacation Ideas",
+    "text": "Explore destinations in Europe and Asia.",
+    "categories": [
+      "Travel"
+    ],
+    "imagePaths": [
+      "data/images/vacation1.jpg"
+    ],
+    "directoryPath": "Root/Travel"
   },
   {
     "id": 4,
-    "name": "Grocery List",
-    "text": "Buy milk, eggs, and bread.",
-    "categories": ["Shopping"],
-    "imagePaths": []
+    "name": "Book Recommendations",
+    "text": "Read \u0027Atomic Habits\u0027 and \u0027Deep Work\u0027.",
+    "categories": [
+      "Reading"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Reading"
   },
   {
     "id": 5,
-    "name": "Gift Ideas",
-    "text": "Look for gift ideas for the upcoming holidays.",
-    "categories": ["Shopping"],
-    "imagePaths": []
+    "name": "Workout Plan",
+    "text": "Monday: Cardio, Wednesday: Strength, Friday: Yoga.",
+    "categories": [
+      "Health",
+      "Fitness"
+    ],
+    "imagePaths": [
+      "data/images/workout.jpg"
+    ],
+    "directoryPath": "Root/Health/Fitness"
   }
 ]

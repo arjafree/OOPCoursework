@@ -13,10 +13,11 @@ public class Note {
     //notes can have one or more images
     private ArrayList<String> imagePaths;
 
-    private Directory directory;
+    private transient Directory directory;
+    private String directoryPath;
 
     //constructor for notes with images
-    public Note(int id, String name, String text, ArrayList<String> imagePaths, ArrayList<String> categories) {
+    public Note(int id, String name, String text, ArrayList<String> imagePaths, ArrayList<String> categories, String directoryPath) {
         //unique identifier for note
         this.id = id;
         this.name = name;
@@ -24,7 +25,9 @@ public class Note {
         //if there is no imagepaths or categories passed, initialise them to empty arraylist
         this.imagePaths = imagePaths != null ? imagePaths : new ArrayList<>();
         this.categories = categories != null ? categories : new ArrayList<>();
-        this.directory = null;
+        this.directoryPath = directoryPath;
+        
+
     }
 
     public int getId() {
@@ -62,19 +65,14 @@ public class Note {
     public void setImagePaths(ArrayList<String> imagePaths) {
         this.imagePaths = imagePaths;
     }
-    public Directory getDirectory() {
-        return directory;
-    }
 
     public void setDirectory(Directory directory) {
         this.directory = directory;
+        this.directoryPath = directory.getPath();
     }
 
     public String getDirectoryPath() {
-        if (directory == null) {
-            return "Unassigned"; // If the note is not assigned to a directory
-        }
-        return directory.getPath();
+        return directoryPath;
     }
 
 
@@ -87,6 +85,7 @@ public class Note {
                 ", text='" + text + '\'' +
                 ", categories=" + categories +
                 ", imagePaths=" + imagePaths +
+                ", directory=" + directory +
                 '}';
     }
 }

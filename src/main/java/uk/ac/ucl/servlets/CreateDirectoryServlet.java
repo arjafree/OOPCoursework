@@ -32,7 +32,6 @@ public class CreateDirectoryServlet extends HttpServlet {
             // Redirect to the parent directory or home if it's the root
             if (parentPath != null && !parentPath.equals("/")) {
                 response.sendRedirect("directory?path=" + parentPath);
-                System.out.println("hello");
             } else {
                 response.sendRedirect("index.html");
             }

@@ -27,6 +27,7 @@
       <main class="notes-container">
         <div class="note-editor">
           <form action="createDirectory" method="POST">
+            
             <input type="hidden" id="parentPath" name="parentPath" value="/">
 
             <div class="form-group">
@@ -40,7 +41,6 @@
                 <%
                   Directory rootDirectory = (Directory) request.getAttribute("rootDirectory");
                   if (rootDirectory != null) {
-
                     renderDirectoryOptions(out, rootDirectory, "", "/");
                   }
                 %>

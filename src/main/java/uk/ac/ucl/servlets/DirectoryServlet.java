@@ -16,11 +16,15 @@ public class DirectoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-        String path = request.getParameter("path").substring(4);
-        System.out.println(path);
+        String path = request.getParameter("path");
+        if(path == null || path.isEmpty()){
+            path = "/";
+        }
         Directory directory = model.findDirectory(path);
+        
         if (directory != null) {
             request.setAttribute("directory", directory);
+            request.setAttribute("notes", directory.getNotes());
             request.setAttribute("parentDirectory", model.getParentDirectory(directory));
             request.getRequestDispatcher("/directory.jsp").forward(request, response);
         } else {
