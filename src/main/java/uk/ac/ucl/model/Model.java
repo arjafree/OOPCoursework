@@ -67,7 +67,6 @@ public class Model {
         for (Category category : index.getCategories()) {
             if (category.getName().equals(categoryName)) {
                 category.addNote(note);
-                index.addNote(note);
                 return;
             }
         }
@@ -75,7 +74,9 @@ public class Model {
         Category newCategory = new Category(categoryName);
         newCategory.addNote(note);
         index.addCategory(newCategory);
-        index.addNote(note);
+  }
+  public void addNote(Note note){
+      index.addNote(note);
   }
 
   public void addNoteToDirectory(Note note, String directoryPath){
@@ -132,6 +133,7 @@ public class Model {
             }
         }
   }
+
   public void saveNotesToFile() {
         try (FileWriter writer = new FileWriter(NOTES_FILE_PATH)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -13,7 +13,6 @@ public class Note {
     //notes can have one or more images
     private ArrayList<String> imagePaths;
 
-    private transient Directory directory;
     private String directoryPath;
 
     //constructor for notes with images
@@ -67,7 +66,6 @@ public class Note {
     }
 
     public void setDirectory(Directory directory) {
-        this.directory = directory;
         this.directoryPath = directory.getPath();
     }
 
@@ -85,7 +83,7 @@ public class Note {
                 ", text='" + text + '\'' +
                 ", categories=" + categories +
                 ", imagePaths=" + imagePaths +
-                ", directory=" + directory +
+                ", directoryPath=" + directoryPath +
                 '}';
     }
 }

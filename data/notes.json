@@ -7,10 +7,7 @@
       "Work",
       "Urgent"
     ],
-    "imagePaths": [
-      "data/images/meeting1.jpg",
-      "data/images/meeting2.jpg"
-    ],
+    "imagePaths": [],
     "directoryPath": "Root/Work"
   },
   {
@@ -30,9 +27,7 @@
     "categories": [
       "Travel"
     ],
-    "imagePaths": [
-      "data/images/vacation1.jpg"
-    ],
+    "imagePaths": [],
     "directoryPath": "Root/Travel"
   },
   {
@@ -53,9 +48,47 @@
       "Health",
       "Fitness"
     ],
-    "imagePaths": [
-      "data/images/workout.jpg"
-    ],
+    "imagePaths": [],
     "directoryPath": "Root/Health/Fitness"
+  },
+  {
+    "id": 6,
+    "name": "See if this saves ",
+    "text": "Hmmmm",
+    "categories": [
+      "Work"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Health"
+  },
+  {
+    "id": 7,
+    "name": "Rootenote",
+    "text": "hmm",
+    "categories": [
+      "Work"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root"
+  },
+  {
+    "id": 8,
+    "name": "skibidi toilet",
+    "text": "huh?",
+    "categories": [
+      "Personal"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Personal"
+  },
+  {
+    "id": 9,
+    "name": "Interesting Note",
+    "text": "Im sure this is an interesting note",
+    "categories": [
+      "Personal"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Personal"
   }
 ]

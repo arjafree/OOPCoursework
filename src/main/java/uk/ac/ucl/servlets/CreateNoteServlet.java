@@ -99,12 +99,15 @@ public class CreateNoteServlet extends HttpServlet {
 
         // Add note to directory
         model.addNoteToDirectory(note, directoryPath);
-        model.saveNotesToFile();
+
+
 
         // Add note to categories
         for (String categoryName : categories) {
             model.addNoteToCategory(note, categoryName);
         }
+        model.addNote(note);
+        model.saveNotesToFile();
         if(directoryPath.equals("/")){
             response.sendRedirect("/index.html");
         }
