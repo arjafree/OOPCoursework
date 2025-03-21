@@ -90,5 +90,37 @@
     ],
     "imagePaths": [],
     "directoryPath": "Root/Personal"
+  },
+  {
+    "id": 10,
+    "name": "Say its just the way you are",
+    "text": "Shoot another shot try to stop believing good luck babe!",
+    "categories": [
+      "Personal"
+    ],
+    "imagePaths": [
+      "data/images/e2b9719c-5d67-4b2f-ab54-22a240ffadd6.jpeg"
+    ],
+    "directoryPath": "Root"
+  },
+  {
+    "id": 11,
+    "name": "This should be a PERSONal note",
+    "text": "personal note",
+    "categories": [
+      "Work"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root"
+  },
+  {
+    "id": 12,
+    "name": "ThisShouldReallyBeAPersonalNote",
+    "text": "Skib skib skib!",
+    "categories": [
+      "Shopping"
+    ],
+    "imagePaths": [],
+    "directoryPath": "Root/Personal"
   }
 ]

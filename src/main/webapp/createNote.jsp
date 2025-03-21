@@ -9,6 +9,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Note</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Additional styles for file upload */
+    .file-upload-container {
+      border: 2px dashed #d1d5db;
+      border-radius: 0.375rem;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .upload-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #6b7280;
+    }
+    
+    .upload-text {
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+    
+    .upload-hint {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      margin-bottom: 1rem;
+    }
+    
+    .file-input-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -24,7 +57,7 @@
     <div class="main-content single-column">
       <main class="notes-container">
         <div class="note-editor">
-          <form action="createNote" method="POST" id="createNoteForm" enctype="multipart/form-data">
+          <form action="createNote" method="POST" enctype="multipart/form-data">
             <%
               int newId = 0;
               try {
@@ -43,7 +76,7 @@
               }
             %>
             <input type="hidden" name="id" value="<%= newId %>">
-            <input type="hidden" id="directoryPath" name="directoryPath" value="<%= directoryParam %>">
+            <!-- <input type="hidden" name="directoryPath" value="<%= directoryParam %>"> -->
 
             <div class="form-group">
               <label for="title">Title</label>
@@ -57,7 +90,7 @@
 
             <div class="form-group">
               <label for="directorySelect">Directory</label>
-              <select id="directorySelect" name="directoryPath" onchange="updateDirectoryPath()">
+              <select id="directorySelect" name="directoryPath">
                 <%
                   // Get the root directory
                   Directory rootDirectory = (Directory) request.getAttribute("rootDirectory");
@@ -80,7 +113,7 @@
                 <div class="checkbox-item">
                   <input type="checkbox"
                          id="category-<%= category.getName() %>"
-                         name="categoryCheckbox"
+                         name="categories"
                          value="<%= category.getName() %>"
                          <%= isSelected ? "checked" : "" %>>
                   <label for="category-<%= category.getName() %>"><%= category.getName() %></label>
@@ -95,13 +128,15 @@
             <div class="form-group">
               <label>Images</label>
               <div class="file-upload-container">
-                <input type="file" id="imageUpload" name="imageFiles" multiple accept="image/*">
                 <div class="upload-icon">📷</div>
-                <div class="upload-text">Drag and drop images here or click to browse</div>
+                <div class="upload-text">Upload images for your note</div>
                 <div class="upload-hint">Supported formats: JPG, PNG, GIF</div>
+                <div class="file-input-container">
+                  <input type="file" name="imageFiles" multiple accept="image/*">
+                </div>
               </div>
             </div>
-
+            
             <div class="form-actions">
               <button type="button" class="btn secondary" onclick="history.back()">Cancel</button>
               <button type="submit" class="btn primary">Save Note</button>
@@ -111,15 +146,6 @@
       </main>
     </div>
   </div>
-
-  <script>
-    // Directory path update
-    function updateDirectoryPath() {
-      const directorySelect = document.getElementById('directorySelect');
-      const directoryPath = document.getElementById('directoryPath');
-      directoryPath.value = directorySelect.value;
-    }
-  </script>
 </body>
 </html>
 
