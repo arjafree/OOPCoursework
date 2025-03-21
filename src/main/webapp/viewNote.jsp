@@ -8,6 +8,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Note</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Additional styles to fix layout issues */
+    .main-content {
+      display: block; /* Override grid layout for this page */
+    }
+
+    .note-detail {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .note-detail {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .note-content {
+      width: 100%;
+    }
+
+    .note-metadata {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -81,9 +108,10 @@
       </div>
     </div>
 
-    <div class="main-content">
-      <main class="note-detail">
+    <div class="notes-container">
+      <div class="note-detail">
         <div class="note-content">
+          <h2>Content</h2>
           <p><%= note.getText().replace("\n", "<br>") %></p>
         </div>
 
@@ -128,7 +156,7 @@
             }
           %>
         </div>
-      </main>
+      </div>
     </div>
     <%
       } else {
