@@ -683,6 +683,38 @@ header h1 {
   font-size: 0.75rem;
 }
 
+.file-upload-container {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.375rem;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.upload-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #6b7280;
+}
+
+.upload-text {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.file-input-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+
 /* Utility classes */
 .icon {
   display: inline-block;

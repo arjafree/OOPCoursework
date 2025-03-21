@@ -1,14 +1,28 @@
 [
   {
-    "name": "Work",
-    "noteIDs": [1, 2]
+    "name": "Urgent",
+    "noteIDs": [
+      1,
+      2
+    ]
   },
   {
-    "name": "Personal",
-    "noteIDs": [3]
+    "name": "Do Whenever",
+    "noteIDs": [
+      3
+    ]
   },
   {
     "name": "Shopping",
-    "noteIDs": [4, 5]
+    "noteIDs": [
+      4,
+      5
+    ]
+  },
+  {
+    "name": "Wowee",
+    "noteIDs": [
+      6
+    ]
   }
 ]

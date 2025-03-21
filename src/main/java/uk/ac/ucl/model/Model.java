@@ -11,6 +11,7 @@ public class Model {
   private Index index;
   private Directory rootDirectory;
   private static final String NOTES_FILE_PATH = "data/notes.json";
+  private static final String CATEGORIES_FILE_PATH = "data/categories.json";
 
   public Model() {
     index = new Index();
@@ -67,13 +68,14 @@ public class Model {
         for (Category category : index.getCategories()) {
             if (category.getName().equals(categoryName)) {
                 category.addNote(note);
+                saveCategoriesToFile();
                 return;
             }
         }
         // If category does not exist, create it and add the note
         Category newCategory = new Category(categoryName);
         newCategory.addNote(note);
-        index.addCategory(newCategory);
+        addCategory(newCategory);
   }
   public void addNote(Note note){
       index.addNote(note);
@@ -133,6 +135,21 @@ public class Model {
             }
         }
   }
+  public void addCategory(Category category) {
+        index.addCategory(category);
+        saveCategoriesToFile();
+    }
+
+    private void saveCategoriesToFile() {
+        try (FileWriter writer = new FileWriter(CATEGORIES_FILE_PATH)) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(index.getCategories(), writer);
+            System.out.println("Categories saved to " + CATEGORIES_FILE_PATH);
+        } catch (IOException e) {
+            System.err.println("Error saving categories to file: " + e.getMessage());
+        }
+    }
+  
 
   public void saveNotesToFile() {
         try (FileWriter writer = new FileWriter(NOTES_FILE_PATH)) {

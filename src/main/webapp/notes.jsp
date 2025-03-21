@@ -13,7 +13,7 @@
       ArrayList<Note> notes = (ArrayList<Note>) request.getAttribute("notes");
       for (Note note : notes) {
     %>
-      <li><a href="viewNote.jsp?title=<%= note.getTitle() %>"><%= note.getTitle() %></a></li>
+      <li><a href="viewNote.jsp?title=<%= note.getName() %>"><%= note.getName() %></a></li>
     <%
       }
     %>

@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -83,8 +82,8 @@ public class CreateNoteServlet extends HttpServlet {
                         String fileExtension = fileName.substring(fileName.lastIndexOf("."));
                         
                         // Generate a unique file name to prevent collisions
-                        String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
-                        String filePath = uploadPath + File.separator + uniqueFileName;
+                        //String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
+                        String filePath = uploadPath + File.separator + fileName;
                         
                         // Save the file
                         try (InputStream input = part.getInputStream()) {
@@ -92,7 +91,7 @@ public class CreateNoteServlet extends HttpServlet {
                         }
                         
                         // Add the relative path to the list
-                        imagePaths.add("data/images/" + uniqueFileName);
+                        imagePaths.add("data/images/" + fileName);
                     }
                 }
             }

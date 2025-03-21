@@ -4,7 +4,6 @@
     "name": "Meeting Notes",
     "text": "Discuss project milestones and deadlines.",
     "categories": [
-      "Work",
       "Urgent"
     ],
     "imagePaths": [],
@@ -15,7 +14,7 @@
     "name": "Shopping List",
     "text": "Milk, Bread, Eggs, Butter, Coffee.",
     "categories": [
-      "Personal"
+      "Do Whenever"
     ],
     "imagePaths": [],
     "directoryPath": "Root/Personal"
@@ -25,7 +24,7 @@
     "name": "Vacation Ideas",
     "text": "Explore destinations in Europe and Asia.",
     "categories": [
-      "Travel"
+      "Shopping"
     ],
     "imagePaths": [],
     "directoryPath": "Root/Travel"
@@ -35,7 +34,7 @@
     "name": "Book Recommendations",
     "text": "Read \u0027Atomic Habits\u0027 and \u0027Deep Work\u0027.",
     "categories": [
-      "Reading"
+      "Shopping"
     ],
     "imagePaths": [],
     "directoryPath": "Root/Reading"
@@ -45,82 +44,21 @@
     "name": "Workout Plan",
     "text": "Monday: Cardio, Wednesday: Strength, Friday: Yoga.",
     "categories": [
-      "Health",
-      "Fitness"
+      "Do Whenever"
     ],
-    "imagePaths": [],
+    "imagePaths": [
+      "data/images/watch_face.png"
+    ],
     "directoryPath": "Root/Health/Fitness"
   },
   {
     "id": 6,
-    "name": "See if this saves ",
-    "text": "Hmmmm",
+    "name": "We are almost done",
+    "text": "lol",
     "categories": [
-      "Work"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root/Health"
-  },
-  {
-    "id": 7,
-    "name": "Rootenote",
-    "text": "hmm",
-    "categories": [
-      "Work"
+      "Wowee"
     ],
     "imagePaths": [],
     "directoryPath": "Root"
-  },
-  {
-    "id": 8,
-    "name": "skibidi toilet",
-    "text": "huh?",
-    "categories": [
-      "Personal"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root/Personal"
-  },
-  {
-    "id": 9,
-    "name": "Interesting Note",
-    "text": "Im sure this is an interesting note",
-    "categories": [
-      "Personal"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root/Personal"
-  },
-  {
-    "id": 10,
-    "name": "Say its just the way you are",
-    "text": "Shoot another shot try to stop believing good luck babe!",
-    "categories": [
-      "Personal"
-    ],
-    "imagePaths": [
-      "data/images/e2b9719c-5d67-4b2f-ab54-22a240ffadd6.jpeg"
-    ],
-    "directoryPath": "Root"
-  },
-  {
-    "id": 11,
-    "name": "This should be a PERSONal note",
-    "text": "personal note",
-    "categories": [
-      "Work"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root"
-  },
-  {
-    "id": 12,
-    "name": "ThisShouldReallyBeAPersonalNote",
-    "text": "Skib skib skib!",
-    "categories": [
-      "Shopping"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root/Personal"
   }
 ]
