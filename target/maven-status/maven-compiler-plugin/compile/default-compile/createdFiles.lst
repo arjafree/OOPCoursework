@@ -1,4 +1,5 @@
 uk/ac/ucl/servlets/DisplayNotesServlet.class
+uk/ac/ucl/servlets/DeleteNoteServlet.class
 uk/ac/ucl/main/Main.class
 uk/ac/ucl/servlets/ImageUploadServlet.class
 uk/ac/ucl/model/Model.class

@@ -24,7 +24,7 @@ public class Category {
   }
 
   public void removeNote(Note note) {
-    noteIDs.remove(note.getId());
+    noteIDs.remove(Integer.valueOf(note.getId()));
   }
 
   public void setName(String name) {

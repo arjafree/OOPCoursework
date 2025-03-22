@@ -39,7 +39,6 @@ public class EditNoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
         int noteId = Integer.parseInt(request.getParameter("id"));
-        System.out.println("note id:" + noteId);
         Note note = model.getNoteByID(noteId);
         if (note != null) {
             request.setAttribute("note", note);
@@ -123,13 +122,21 @@ public class EditNoteServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+       for(String category: existingNote.getCategories()){
+           model.removeNoteFromCategory(existingNote, category);
+       }
+       model.saveCategoriesToFile();
+       model.removeNoteFromDirectory(existingNote, model.findDirectory(existingNote.getDirectoryPath()));
 
        existingNote.setCategories(categories);
        existingNote.setDirectoryPath(directoryPath);
        existingNote.setName(title);
        existingNote.setImagePaths(imagePaths);
        existingNote.setText(content);
-       System.out.println("Ganged up " + categories + " " + model.findDirectory(existingNote.getDirectoryPath()).getName() + " " + title + " " +imagePaths + " "+ content);
+       for(String category:categories){
+           model.addNoteToCategory(existingNote, category);
+       }
+       model.addNoteToDirectory(existingNote, directoryPath);
        model.saveNotesToFile();
         
         // Redirect to view the updated note

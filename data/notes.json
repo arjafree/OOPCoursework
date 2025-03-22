@@ -39,28 +39,16 @@
     "imagePaths": [],
     "directoryPath": "Root/Reading"
   },
+  null,
+  null,
   {
-    "id": 5,
-    "name": "Workout Plan - gonna make you wonder",
-    "text": "Monday: Cardio, Wednesday: Strength, Friday: Yoga.\r\nHard Times!",
+    "id": 7,
+    "name": "newnote",
+    "text": "shouldbeid7",
     "categories": [
-      "Do Whenever",
-      "Shopping"
-    ],
-    "imagePaths": [
-      "data/images/watch_face.png",
-      "data/images/freaky-freaky-ahh-orca.gif"
-    ],
-    "directoryPath": "Root/Travel"
-  },
-  {
-    "id": 6,
-    "name": "We are almost done",
-    "text": "lol",
-    "categories": [
-      "New Category"
+      "Urgent"
     ],
     "imagePaths": [],
-    "directoryPath": "Root/Personal"
+    "directoryPath": "Root"
   }
 ]

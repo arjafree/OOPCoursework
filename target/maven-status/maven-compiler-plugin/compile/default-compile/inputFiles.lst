@@ -8,6 +8,7 @@
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/CreateCategoryServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/CreateDirectoryServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/CreateNoteServlet.java
+/Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DeleteNoteServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DirectoryServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DisplayCategoriesServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DisplayNotesServlet.java

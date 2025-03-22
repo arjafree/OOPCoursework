@@ -111,6 +111,7 @@ public class CreateNoteServlet extends HttpServlet {
         }
         model.addNote(note);
         model.saveNotesToFile();
+        model.saveCategoriesToFile();
         
         // Redirect to the directory where the note was created
         response.sendRedirect("directory?path=" + directoryPath);

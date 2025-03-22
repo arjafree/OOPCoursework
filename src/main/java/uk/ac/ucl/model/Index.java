@@ -31,7 +31,7 @@ public class Index {
         categories.add(category);
     }
     public void removeNote(Note note){
-        notes.remove(note);
+        notes.set(note.getId()-1, null);
     }
     public void removeCategory(Category category){
         categories.remove(category);

@@ -34,6 +34,64 @@
     .note-metadata {
       width: 100%;
     }
+
+    /* Delete button styling */
+    .btn.danger {
+      background-color: #ef4444;
+      color: white;
+      border: 1px solid #dc2626;
+    }
+
+    .btn.danger:hover {
+      background-color: #dc2626;
+    }
+
+    /* Action buttons spacing */
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Delete confirmation modal */
+    .delete-confirm-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #dc2626;
+    }
+
+    .modal-message {
+      margin-bottom: 1.5rem;
+      color: #4b5563;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -66,6 +124,9 @@
         <a href="editNote?id=<%= note.getId() %>" class="btn primary">
           <span class="icon">✏️</span> Edit Note
         </a>
+        <button id="deleteNoteBtn" class="btn danger">
+          <span class="icon">🗑️</span> Delete Note
+        </button>
       </div>
     </header>
 
@@ -158,6 +219,42 @@
         </div>
       </div>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="delete-confirm-modal">
+      <div class="modal-content">
+        <h3 class="modal-title">Delete Note</h3>
+        <p class="modal-message">
+          Are you sure you want to delete "<%= note.getName() %>"? This action cannot be undone.
+        </p>
+        <div class="modal-actions">
+          <button id="cancelDeleteBtn" class="btn secondary">Cancel</button>
+          <a href="deleteNote?id=<%= note.getId() %>" class="btn danger">Delete</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Delete confirmation functionality
+      const deleteNoteBtn = document.getElementById('deleteNoteBtn');
+      const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+      const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+      deleteNoteBtn.addEventListener('click', function() {
+        deleteConfirmModal.style.display = 'flex';
+      });
+
+      cancelDeleteBtn.addEventListener('click', function() {
+        deleteConfirmModal.style.display = 'none';
+      });
+
+      // Close modal when clicking outside
+      deleteConfirmModal.addEventListener('click', function(event) {
+        if (event.target === deleteConfirmModal) {
+          deleteConfirmModal.style.display = 'none';
+        }
+      });
+    </script>
     <%
       } else {
     %>

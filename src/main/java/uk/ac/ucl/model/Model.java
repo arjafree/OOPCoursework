@@ -1,5 +1,6 @@
 package uk.ac.ucl.model;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,11 +127,67 @@ public class Model {
             parent.addSubdirectory(newDirectory);
       }
   }
+
+  public void deleteNote(Note note) {
+      //first, remove the note from all its categories
+      for (String categoryName : note.getCategories()) {
+        removeNoteFromCategory(note, categoryName);
+      }
+       //then, remove the note from its directory
+       Directory directory = findDirectory(note.getDirectoryPath());
+       removeNoteFromDirectory(note, directory);
+
+       //then, delete the images that are associated with it
+       deleteNoteImages(note);
+
+       //then, remove the note from the index
+       index.removeNote(note);
+       //then, save the json file
+       saveNotesToFile();
+
+       //save categories as well
+       saveCategoriesToFile();
+  }
+
+  // Helper method to delete images associated with a note
+private void deleteNoteImages(Note note) {
+    // Get the image paths from the note
+    ArrayList<String> imagePaths = note.getImagePaths();
+    if (imagePaths == null || imagePaths.isEmpty()) {
+        return; // No images to delete
+    }
+
+    // Get the absolute path to the webapp/data/images directory
+    String applicationPath = System.getProperty("user.dir"); // Base directory of the project
+    String imagesPath = applicationPath + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "data" + File.separator + "images";
+
+    // Delete each image file
+    for (String relativePath : imagePaths) {
+        try {
+            File imageFile = new File(imagesPath, new File(relativePath).getName()); // Get the file name from the relative path
+            if (imageFile.exists()) {
+                if (imageFile.delete()) {
+                    System.out.println("Deleted image: " + imageFile.getAbsolutePath());
+                } else {
+                    System.err.println("Failed to delete image: " + imageFile.getAbsolutePath());
+                }
+            } else {
+                System.err.println("Image file not found: " + imageFile.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            System.err.println("Error deleting image file: " + e.getMessage());
+        }
+    }
+}
+
+  public void removeNoteFromDirectory(Note note, Directory d){
+      d.removeNote(note);
+  }
+
   public void removeNoteFromCategory(Note note, String categoryName) {
         for (Category category : index.getCategories()) {
             if (category.getName().equals(categoryName)) {
                 category.removeNote(note);
-                index.removeNote(note);
                 return;
             }
         }
@@ -140,7 +197,7 @@ public class Model {
         saveCategoriesToFile();
     }
 
-    private void saveCategoriesToFile() {
+    public void saveCategoriesToFile() {
         try (FileWriter writer = new FileWriter(CATEGORIES_FILE_PATH)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(index.getCategories(), writer);
