@@ -9,11 +9,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notes App</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Search bar styles */
+    .search-container {
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    .search-form {
+      display: flex;
+      width: 100%;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-right: none;
+      border-radius: 0.375rem 0 0 0.375rem;
+      font-size: 1rem;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+    }
+
+    .search-button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 0 0.375rem 0.375rem 0;
+      padding: 0 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-button:hover {
+      background-color: #2563eb;
+    }
+
+    .search-icon {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .search-container {
+        max-width: 500px;
+        margin-bottom: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Notes App</h1>
+      <div class="header-top">
+        <h1>Notes App</h1>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form action="search" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search notes..." class="search-input" required>
+            <button type="submit" class="search-button">
+              <span class="search-icon">🔍</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
       <div class="header-actions">
         <a href="createDirectory" class="btn primary">
           <span class="icon">+</span> New Directory

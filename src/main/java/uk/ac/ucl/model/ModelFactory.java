@@ -41,6 +41,9 @@ public class ModelFactory
   }
   private static void loadDirectories() {
     for (Note note : notes) {
+        if(note == null){
+            continue;
+        }
         String directoryPath = note.getDirectoryPath();
         Directory directory = model.findDirectory(directoryPath);
 

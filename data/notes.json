@@ -41,14 +41,6 @@
   },
   null,
   null,
-  {
-    "id": 7,
-    "name": "newnote",
-    "text": "shouldbeid7",
-    "categories": [
-      "Urgent"
-    ],
-    "imagePaths": [],
-    "directoryPath": "Root"
-  }
+  null,
+  null
 ]
