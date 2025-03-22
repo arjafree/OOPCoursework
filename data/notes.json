@@ -41,24 +41,26 @@
   },
   {
     "id": 5,
-    "name": "Workout Plan",
-    "text": "Monday: Cardio, Wednesday: Strength, Friday: Yoga.",
+    "name": "Workout Plan - gonna make you wonder",
+    "text": "Monday: Cardio, Wednesday: Strength, Friday: Yoga.\r\nHard Times!",
     "categories": [
-      "Do Whenever"
+      "Do Whenever",
+      "Shopping"
     ],
     "imagePaths": [
-      "data/images/watch_face.png"
+      "data/images/watch_face.png",
+      "data/images/freaky-freaky-ahh-orca.gif"
     ],
-    "directoryPath": "Root/Health/Fitness"
+    "directoryPath": "Root/Travel"
   },
   {
     "id": 6,
     "name": "We are almost done",
     "text": "lol",
     "categories": [
-      "Wowee"
+      "New Category"
     ],
     "imagePaths": [],
-    "directoryPath": "Root"
+    "directoryPath": "Root/Personal"
   }
 ]

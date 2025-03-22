@@ -63,7 +63,7 @@
             <span class="icon">🏷️</span> View Category
           </a>
         <% } %>
-        <a href="editNote.jsp?id=<%= note.getId() %>" class="btn primary">
+        <a href="editNote?id=<%= note.getId() %>" class="btn primary">
           <span class="icon">✏️</span> Edit Note
         </a>
       </div>

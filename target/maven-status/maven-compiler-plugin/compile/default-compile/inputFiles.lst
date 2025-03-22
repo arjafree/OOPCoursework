@@ -11,6 +11,7 @@
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DirectoryServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DisplayCategoriesServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/DisplayNotesServlet.java
+/Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/EditNoteServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/ImageUploadServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/IndexServlet.java
 /Users/alirazajafree/Documents/GitHub/OOPCoursework/src/main/java/uk/ac/ucl/servlets/ViewNoteServlet.java

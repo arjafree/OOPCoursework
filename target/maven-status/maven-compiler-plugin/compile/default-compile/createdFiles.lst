@@ -3,8 +3,10 @@ uk/ac/ucl/main/Main.class
 uk/ac/ucl/servlets/ImageUploadServlet.class
 uk/ac/ucl/model/Model.class
 uk/ac/ucl/servlets/DirectoryServlet.class
+uk/ac/ucl/servlets/EditNoteServlet.class
 uk/ac/ucl/model/ModelFactory.class
 uk/ac/ucl/servlets/CreateDirectoryServlet.class
 uk/ac/ucl/model/Directory.class
 uk/ac/ucl/servlets/CreateCategoryServlet.class
 uk/ac/ucl/servlets/IndexServlet.class
+uk/ac/ucl/servlets/EditNoteServlet$1.class

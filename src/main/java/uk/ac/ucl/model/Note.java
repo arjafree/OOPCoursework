@@ -65,6 +65,10 @@ public class Note {
         this.imagePaths = imagePaths;
     }
 
+    public void setDirectoryPath(String directoryPath){
+        this.directoryPath = directoryPath;
+    }
+
     public void setDirectory(Directory directory) {
         this.directoryPath = directory.getPath();
     }
