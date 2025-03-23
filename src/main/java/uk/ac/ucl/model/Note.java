@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Note {
     //unique id
-    private int id;
+    private final int id;
     private String name;
     private String text;
 
@@ -25,7 +25,7 @@ public class Note {
         this.imagePaths = imagePaths != null ? imagePaths : new ArrayList<>();
         this.categories = categories != null ? categories : new ArrayList<>();
         this.directoryPath = directoryPath;
-        
+
 
     }
 
@@ -65,7 +65,7 @@ public class Note {
         this.imagePaths = imagePaths;
     }
 
-    public void setDirectoryPath(String directoryPath){
+    public void setDirectoryPath(String directoryPath) {
         this.directoryPath = directoryPath;
     }
 
@@ -76,7 +76,6 @@ public class Note {
     public String getDirectoryPath() {
         return directoryPath;
     }
-
 
 
     @Override

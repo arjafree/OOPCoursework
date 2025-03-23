@@ -40,7 +40,17 @@
     "directoryPath": "Root/Reading"
   },
   null,
-  null,
-  null,
-  null
+  {
+    "id": 6,
+    "name": "Adding a note to the directory",
+    "text": "Wow, this is a new directory",
+    "categories": [
+      "Do Whenever",
+      "Shopping"
+    ],
+    "imagePaths": [
+      "data/images/IMG_6932.jpeg"
+    ],
+    "directoryPath": "Root/New Directory"
+  }
 ]

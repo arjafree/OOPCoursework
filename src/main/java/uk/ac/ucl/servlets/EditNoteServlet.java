@@ -1,19 +1,7 @@
 package uk.ac.ucl.servlets;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,14 +13,22 @@ import uk.ac.ucl.model.Model;
 import uk.ac.ucl.model.ModelFactory;
 import uk.ac.ucl.model.Note;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
+
 @WebServlet("/editNote")
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024, // 1 MB
-    maxFileSize = 1024 * 1024 * 10,  // 10 MB
-    maxRequestSize = 1024 * 1024 * 50 // 50 MB
+        fileSizeThreshold = 1024 * 1024, // 1 MB
+        maxFileSize = 1024 * 1024 * 10,  // 10 MB
+        maxRequestSize = 1024 * 1024 * 50 // 50 MB
 )
 public class EditNoteServlet extends HttpServlet {
-    
+
     private static final String UPLOAD_DIRECTORY = "data/images";
 
     @Override
@@ -50,7 +46,7 @@ public class EditNoteServlet extends HttpServlet {
         }
 
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
@@ -65,31 +61,30 @@ public class EditNoteServlet extends HttpServlet {
             response.sendRedirect("index.html");
             return;
         }
-        
+
         // see if we cant shorten this code
         String[] categoryValues = request.getParameterValues("categories");
         ArrayList<String> categories = new ArrayList<>();
         if (categoryValues != null) {
             categories.addAll(Arrays.asList(categoryValues));
         }
-        
+
         // Get existing image paths that were not removed
         ArrayList<String> imagePaths = new ArrayList<>();
         String existingImagePathsJson = request.getParameter("existingImagePaths");
         if (existingImagePathsJson != null && !existingImagePathsJson.isEmpty()) {
             Gson gson = new Gson();
-            List<String> existingImagePaths = gson.fromJson(existingImagePathsJson, new TypeToken<List<String>>() {}.getType());
+            List<String> existingImagePaths = gson.fromJson(existingImagePathsJson, new TypeToken<List<String>>() {
+            }.getType());
             imagePaths.addAll(existingImagePaths);
         } else {
             // If no JSON data, try to get individual paths
             String[] existingImages = request.getParameterValues("existingImages");
             if (existingImages != null) {
-                for (String path : existingImages) {
-                    imagePaths.add(path);
-                }
+                Collections.addAll(imagePaths, existingImages);
             }
         }
-        
+
         // Handle new image uploads
         // Create upload directory structure if it doesn't exist
         String applicationPath = request.getServletContext().getRealPath("");
@@ -99,7 +94,7 @@ public class EditNoteServlet extends HttpServlet {
         // Create images directory if it doesn't exist
         File uploadDir = new File(uploadPath);
 
-        
+
         // Process uploaded files
         try {
             Collection<Part> parts = request.getParts();
@@ -108,12 +103,12 @@ public class EditNoteServlet extends HttpServlet {
                     String fileName = getSubmittedFileName(part);
                     if (fileName != null && !fileName.isEmpty()) {
                         String filePath = uploadPath + File.separator + fileName;
-                        
+
                         // Save the file
                         try (InputStream input = part.getInputStream()) {
                             Files.copy(input, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
                         }
-                        
+
                         // Add the relative path to the list
                         imagePaths.add("data/images/" + fileName);
                     }
@@ -122,27 +117,27 @@ public class EditNoteServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       for(String category: existingNote.getCategories()){
-           model.removeNoteFromCategory(existingNote, category);
-       }
-       model.saveCategoriesToFile();
-       model.removeNoteFromDirectory(existingNote, model.findDirectory(existingNote.getDirectoryPath()));
+        for (String category : existingNote.getCategories()) {
+            model.removeNoteFromCategory(existingNote, category);
+        }
+        model.saveCategoriesToFile();
+        model.removeNoteFromDirectory(existingNote, model.findDirectory(existingNote.getDirectoryPath()));
 
-       existingNote.setCategories(categories);
-       existingNote.setDirectoryPath(directoryPath);
-       existingNote.setName(title);
-       existingNote.setImagePaths(imagePaths);
-       existingNote.setText(content);
-       for(String category:categories){
-           model.addNoteToCategory(existingNote, category);
-       }
-       model.addNoteToDirectory(existingNote, directoryPath);
-       model.saveNotesToFile();
-        
+        existingNote.setCategories(categories);
+        existingNote.setDirectoryPath(directoryPath);
+        existingNote.setName(title);
+        existingNote.setImagePaths(imagePaths);
+        existingNote.setText(content);
+        for (String category : categories) {
+            model.addNoteToCategory(existingNote, category);
+        }
+        model.addNoteToDirectory(existingNote, directoryPath);
+        model.saveNotesToFile();
+
         // Redirect to view the updated note
         response.sendRedirect("viewNote?id=" + id);
     }
-    
+
     private String getSubmittedFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");

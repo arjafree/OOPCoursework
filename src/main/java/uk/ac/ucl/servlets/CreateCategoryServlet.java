@@ -1,7 +1,5 @@
 package uk.ac.ucl.servlets;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +9,8 @@ import uk.ac.ucl.model.Category;
 import uk.ac.ucl.model.Model;
 import uk.ac.ucl.model.ModelFactory;
 
+import java.io.IOException;
+
 @WebServlet("/createCategory")
 public class CreateCategoryServlet extends HttpServlet {
     @Override
@@ -18,6 +18,7 @@ public class CreateCategoryServlet extends HttpServlet {
         // Redirect to the createCategory.jsp page
         response.sendRedirect("createCategory.jsp");
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve the model

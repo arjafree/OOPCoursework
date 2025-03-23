@@ -1,5 +1,13 @@
 package uk.ac.ucl.servlets;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,14 +17,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 
 @WebServlet("/uploadImage")
 @MultipartConfig(
@@ -54,7 +54,7 @@ public class ImageUploadServlet extends HttpServlet {
                     String fileExtension = fileName.substring(fileName.lastIndexOf("."));
 
                     // Generate a unique file name to prevent collisions
-                    String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
+                    String uniqueFileName = UUID.randomUUID() + fileExtension;
                     String filePath = UPLOAD_DIRECTORY + File.separator + uniqueFileName;
 
                     // Save the file

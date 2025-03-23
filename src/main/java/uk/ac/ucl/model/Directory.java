@@ -3,16 +3,17 @@ package uk.ac.ucl.model;
 import java.util.ArrayList;
 
 public class Directory {
-    private String name;
+    private final String name;
     private Directory parent;
-    private ArrayList<Directory> subdirectories;
-    private ArrayList<Note> notes;
+    private final ArrayList<Directory> subdirectories;
+    private final ArrayList<Note> notes;
 
     public Directory(String name) {
         this.name = name;
         this.subdirectories = new ArrayList<>();
         this.notes = new ArrayList<>();
     }
+
     public Directory(String name, Directory parent) {
         this.name = name;
         this.parent = parent;
@@ -49,7 +50,7 @@ public class Directory {
         notes.remove(note);
     }
 
-    public Directory getParent(){
+    public Directory getParent() {
         return parent;
     }
 

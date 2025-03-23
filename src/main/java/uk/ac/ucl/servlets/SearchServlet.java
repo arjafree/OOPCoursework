@@ -42,7 +42,7 @@ public class SearchServlet extends HttpServlet {
         ArrayList<Note> allNotes = model.getIndex().getNotes();
 
         for (Note note : allNotes) {
-            if(note == null){
+            if (note == null) {
                 continue;
             }
             // Search in title

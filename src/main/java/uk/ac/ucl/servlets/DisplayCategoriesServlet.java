@@ -1,7 +1,5 @@
 package uk.ac.ucl.servlets;
 
-import java.io.IOException;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -11,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import uk.ac.ucl.model.Model;
 import uk.ac.ucl.model.ModelFactory;
+
+import java.io.IOException;
 
 @WebServlet("/categories.html")
 public class DisplayCategoriesServlet extends HttpServlet {
